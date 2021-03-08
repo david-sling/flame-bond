@@ -6,6 +6,21 @@
     @content;
   }
 }
+::-webkit-scrollbar {
+  width: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
 $primary: #ffa000;
 
@@ -163,12 +178,39 @@ $primary: #ffa000;
   }
   .collectionsList {
     flex: 1;
+    overflow-y: scroll;
 
     h4 {
-      margin: 10px;
+      margin: 10px 20px;
       color: #ffeac6;
       letter-spacing: 3px;
       font-size: 1rem;
+    }
+
+    .collection {
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      &:hover {
+        background-color: lighten($color: $primary, $amount: 10);
+      }
+      p {
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+      }
+      &.open {
+        background-color: white;
+        p {
+          color: $primary;
+        }
+        svg {
+          fill: $primary;
+        }
+      }
     }
   }
   button {

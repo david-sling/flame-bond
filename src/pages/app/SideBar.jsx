@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { auth, firestore } from "../../services/firebase";
 
 import SignOutIcon from "@material-ui/icons/ExitToApp";
+import Arrow from "@material-ui/icons/ArrowForwardIos";
 
 import logotype from "../../assets/logotype.svg";
+import { capitalize } from "@material-ui/core";
 
-export default function SideBar({ user }) {
+export default function SideBar({ user, page, setPage }) {
   const [collections, setCollections] = useState(null);
 
   useEffect(() => {
@@ -14,7 +16,7 @@ export default function SideBar({ user }) {
 
   const getCollections = async () => {
     const data = await firestore.get("_collections");
-    console.log(data);
+    setCollections(data);
   };
 
   return (
@@ -24,6 +26,16 @@ export default function SideBar({ user }) {
       </div>
       <div className="collectionsList">
         <h4>COLLECTIONS</h4>
+        {collections?.map((collection) => (
+          <div
+            key={collection.id}
+            className={page == collection.id ? "collection open" : "collection"}
+            onClick={() => setPage(collection.id)}
+          >
+            <p>{capitalize(collection.id)}</p>
+            <Arrow style={{ color: "white" }} />
+          </div>
+        ))}
       </div>
       <button onClick={auth.signOut}>
         <SignOutIcon />
