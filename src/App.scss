@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+
+@mixin phone {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-family: "Nunito";
+  button,
+  #button {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-shadow: 5px 4px 13px 0 #989898, inset 0 0 0 0 #989898;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      box-shadow: 0 0 0 0 #989898, inset 5px 4px 13px 0 #989898;
+    }
+
+    img {
+      height: 30px;
+      margin-right: 20px;
+    }
+    p {
+      font-size: medium;
+      font-weight: bold;
+    }
+  }
+}
+
+.Login {
+  width: 100vw;
+  min-height: 100vh;
+  background-image: url("./assets/LoginBG.svg");
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-size: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  padding: 100px;
+  overflow: hidden;
+  @include phone() {
+    background-image: none;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 100px;
+    @include phone() {
+      margin: none;
+      flex-direction: column;
+      margin-bottom: 50px;
+      align-items: stretch;
+    }
+
+    * {
+      font-family: "Montserrat";
+    }
+    .logo {
+      height: 100px;
+      width: 100px;
+      @include phone() {
+        width: unset;
+        height: unset;
+      }
+
+      img {
+        width: 100%;
+        @include phone() {
+          width: 100vw;
+        }
+      }
+    }
+    .text {
+      margin-left: 50px;
+      @include phone() {
+        margin: 0;
+      }
+      h1 {
+        font-weight: normal;
+        margin-bottom: 10px;
+        font-size: 2.3rem;
+        @include phone() {
+          text-align: center;
+        }
+      }
+      p {
+        font-weight: bolder;
+        color: #909090;
+        letter-spacing: 3px;
+        @include phone() {
+          font-size: small;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include phone() {
+      flex-direction: column;
+    }
+    button {
+      background-color: white;
+    }
+    .github#button {
+      padding: 20px 20px;
+      min-width: 0;
+      border-radius: 50%;
+      img {
+        margin: 0;
+      }
+      @include phone() {
+        margin: 20px 0;
+      }
+    }
+  }
+}
