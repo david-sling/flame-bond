@@ -1,4 +1,4 @@
-import firebase from "./init";
+import firebase from "../init";
 
 const setUpRecaptcha = () => {
   window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
@@ -44,12 +44,6 @@ const signIn = (phoneNumber, setConfirmationResult) => {
 
 export { signIn };
 
-const signOut = (callback = console.log, errorHandler = console.error) => {
-  firebase.auth().signOut().then(callback).catch(errorHandler);
-};
-
-export { signOut };
-
 const sendOTP = (OTP, confirmationResult) => {
   if (!confirmationResult) return;
   console.log("kkk");
@@ -67,5 +61,5 @@ const sendOTP = (OTP, confirmationResult) => {
 
 export { sendOTP };
 
-const phone = { signIn, signOut, sendOTP };
+const phone = { signIn, sendOTP };
 export default phone;

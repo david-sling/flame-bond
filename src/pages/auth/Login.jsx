@@ -3,6 +3,8 @@ import logo from "../../assets/logo.svg";
 import google from "../../assets/google.svg";
 import github from "../../assets/github.svg";
 
+import { auth } from "../../services/firebase";
+
 export default function Login() {
   return (
     <div className="Login">
@@ -16,8 +18,9 @@ export default function Login() {
         </div>
       </div>
       <div className="buttons">
-        <button>
-          <img src={google} alt="Google logo" /> <p>Sign up with Google</p>
+        <button onClick={auth.google.login}>
+          <img src={google} alt="Google logo" />
+          <p>Sign in with Google</p>
         </button>
         <div className="github" id="button">
           <img src={github} alt="GitHub logo" />

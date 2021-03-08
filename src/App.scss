@@ -7,6 +7,8 @@
   }
 }
 
+$primary: #ffa000;
+
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +22,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    box-shadow: 5px 4px 13px 0 #989898, inset 0 0 0 0 #989898;
+    box-shadow: 5px 4px 13px 0 #0000006c, inset 0 0 0 0 #989898;
     border: none;
     cursor: pointer;
     transition: 0.2s;
@@ -31,13 +33,16 @@
       box-shadow: 0 0 0 0 #989898, inset 5px 4px 13px 0 #989898;
     }
 
-    img {
+    * {
       height: 30px;
       margin-right: 20px;
     }
     p {
+      height: unset;
+      margin-right: unset;
       font-size: medium;
       font-weight: bold;
+      text-align: center;
     }
   }
 }
@@ -135,5 +140,39 @@
         margin: 20px 0;
       }
     }
+  }
+}
+
+.User {
+  height: 100vh;
+  display: flex;
+}
+
+.SideBar {
+  width: 250px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  background-color: $primary;
+  .logo {
+    img {
+      width: 100%;
+    }
+  }
+  .collectionsList {
+    flex: 1;
+
+    h4 {
+      margin: 10px;
+      color: #ffeac6;
+      letter-spacing: 3px;
+      font-size: 1rem;
+    }
+  }
+  button {
+    align-self: center;
+    margin: 20px;
   }
 }
