@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat");
 
+$primary: #ffa000;
+$blue: #0596ff;
+$red: #e00b0b;
+$green: #59cc12;
+
 @mixin phone {
   @media (max-width: 600px) {
     @content;
@@ -11,7 +16,7 @@
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: lighten($color: $primary, $amount: 20);
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -22,22 +27,27 @@
   background: #555;
 }
 
-$primary: #ffa000;
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
   font-family: "Nunito";
+  a {
+    color: unset;
+    text-decoration: none;
+  }
   button,
   #button {
     border: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background-color: white;
+    display: grid;
+    place-items: center;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    // justify-content: space-between;
     padding: 10px 20px;
-    box-shadow: 5px 4px 13px 0 #0000006c, inset 0 0 0 0 #989898;
+    box-shadow: 5px 4px 13px 0 #0000006c, inset 0 0 0 0 #0000006c;
     border: none;
     cursor: pointer;
     transition: 0.2s;
@@ -45,12 +55,56 @@ $primary: #ffa000;
       outline: none;
     }
     &:hover {
-      box-shadow: 0 0 0 0 #989898, inset 5px 4px 13px 0 #989898;
+      box-shadow: 0 0 0 0 #0000006c, inset 5px 4px 13px 0 #0000006c;
+      * {
+        transform: translate(1px, 1px);
+      }
+    }
+
+    &.red {
+      * {
+        color: $red;
+        fill: $red;
+      }
+      &.active {
+        * {
+          color: white;
+          fill: white;
+        }
+        background-color: $red;
+      }
+    }
+    &.blue {
+      * {
+        color: $blue;
+        fill: $blue;
+      }
+      &.active {
+        * {
+          color: white;
+          fill: white;
+        }
+        background-color: $blue;
+      }
+    }
+    &.green {
+      * {
+        color: $green;
+        fill: $green;
+      }
+      &.active {
+        * {
+          color: white;
+          fill: white;
+        }
+        background-color: $green;
+      }
     }
 
     * {
       height: 30px;
-      margin-right: 20px;
+      // margin-right: 20px;
+      transition: 0.2s;
     }
     p {
       height: unset;
@@ -217,4 +271,70 @@ $primary: #ffa000;
     align-self: center;
     margin: 20px;
   }
+}
+
+.Main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.Collection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    h1 {
+      font-size: 5rem;
+      color: $primary;
+      letter-spacing: 3px;
+      font-weight: 500;
+      line-height: 5rem;
+    }
+    p.url {
+      color: #555;
+      font-size: 1.3rem;
+    }
+    .buttons {
+      display: flex;
+      button {
+        margin-left: 20px;
+      }
+    }
+  }
+  table {
+    align-self: stretch;
+    margin: 20px;
+    box-shadow: 5px 4px 13px 0 #00000033;
+    border-spacing: 0px;
+    thead {
+      background-color: $primary;
+      color: white;
+      letter-spacing: 0.1rem;
+      font-size: 1rem;
+    }
+    tbody {
+      tr:nth-child(even) {
+        background-color: lighten($color: $primary, $amount: 45);
+      }
+    }
+    td,
+    th {
+      text-align: center;
+      padding: 10px;
+    }
+  }
+}
+
+section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }

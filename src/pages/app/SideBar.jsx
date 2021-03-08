@@ -6,6 +6,7 @@ import Arrow from "@material-ui/icons/ArrowForwardIos";
 
 import logotype from "../../assets/logotype.svg";
 import { capitalize } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 export default function SideBar({ user, page, setPage }) {
   const [collections, setCollections] = useState(null);
@@ -21,20 +22,25 @@ export default function SideBar({ user, page, setPage }) {
 
   return (
     <div className="SideBar">
-      <div className="logo">
-        <img src={logotype} alt="" />
-      </div>
+      <Link to=".">
+        <div className="logo">
+          <img src={logotype} alt="" />
+        </div>
+      </Link>
       <div className="collectionsList">
         <h4>COLLECTIONS</h4>
         {collections?.map((collection) => (
-          <div
-            key={collection.id}
-            className={page == collection.id ? "collection open" : "collection"}
-            onClick={() => setPage(collection.id)}
-          >
-            <p>{capitalize(collection.id)}</p>
-            <Arrow style={{ color: "white" }} />
-          </div>
+          <Link key={collection.id} to={`/${collection.id}`}>
+            <div
+              className={
+                page == collection.id ? "collection open" : "collection"
+              }
+              // onClick={() => setPage(collection.id)}
+            >
+              <p>{collection.name}</p>
+              <Arrow style={{ color: "white" }} />
+            </div>
+          </Link>
         ))}
       </div>
       <button onClick={auth.signOut}>

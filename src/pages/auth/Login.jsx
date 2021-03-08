@@ -22,7 +22,7 @@ export default function Login() {
           <img src={google} alt="Google logo" />
           <p>Sign in with Google</p>
         </button>
-        <div className="github" id="button">
+        <div className="github">
           <img src={github} alt="GitHub logo" />
         </div>
       </div>
