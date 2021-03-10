@@ -17,4 +17,10 @@ const getCollections = async (setCollections) => {
   setCollections(data);
 };
 
-export { getSchema, getEntry, getCollections };
+const getCollection = async (collectionId, setCollection) => {
+  const data = await firestore.get(collectionId);
+  setCollection(data);
+  console.log(data);
+};
+
+export { getSchema, getEntry, getCollections, getCollection };

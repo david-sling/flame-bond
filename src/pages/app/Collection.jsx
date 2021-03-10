@@ -4,6 +4,7 @@ import { firestore } from "../../services/firebase";
 import { Redirect, useParams } from "react-router";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
+import { getCollection, getSchema } from "../../services/actions";
 
 export default function Collection({ setPage }) {
   const { collectionId } = useParams();
@@ -13,30 +14,21 @@ export default function Collection({ setPage }) {
 
   useEffect(() => {
     setPage(collectionId);
-    getCollection();
-    getSchema();
+    getCollection(collectionId, setCollection);
+    getSchema(collectionId, setSchema);
   }, [collectionId]);
 
-  const getSchema = async () => {
-    const data = await firestore.getOne("_collections", collectionId);
-    setSchema(data);
-    console.log(data);
-  };
-
-  const getCollection = async () => {
-    const data = await firestore.get(collectionId);
-    setCollection(data);
-    console.log(data);
-  };
   if (redirect) return <Redirect to={redirect} />;
 
   return (
     <div className="Collection">
       <Header title={schema?.name} url={[collectionId]}>
-        <button className="blue">
-          <p>Edit</p>
-          <Edit />
-        </button>
+        <Link to={`${collectionId}/edit`}>
+          <button className="blue">
+            <p>Edit</p>
+            <Edit />
+          </button>
+        </Link>
         <Link to={`/${collectionId}/new`}>
           <button className="green">
             <p>New</p>

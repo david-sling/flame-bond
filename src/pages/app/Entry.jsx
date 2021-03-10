@@ -5,12 +5,12 @@ import FormInput from "./FormInput";
 export default function Entry({ entry, schema, setEntry }) {
   return (
     <section>
-      <form action="">
+      <form id="grid" action="">
         {entry &&
           schema?.fields.map((item) => {
             if (item.key[0] == "_") return;
             return (
-              <div className="field">
+              <div className="field" key={item.key}>
                 <label htmlFor="">{capitalize(item.key)}</label>
                 <FormInput
                   setValue={(v) => {

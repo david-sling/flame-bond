@@ -1,4 +1,4 @@
-import { Save } from "@material-ui/icons";
+import { Publish, Save } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Header from "../../components/Header";
@@ -16,6 +16,10 @@ export default function NewEntry({ setPage }) {
   return (
     <div>
       <Header title="New" url={[collectionId, "new"]}>
+        <button className="green">
+          <p>Publish</p>
+          <Publish />
+        </button>
         <button className="blue">
           <p>Save</p>
           <Save />

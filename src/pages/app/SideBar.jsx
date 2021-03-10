@@ -8,6 +8,7 @@ import Arrow from "@material-ui/icons/ArrowForwardIos";
 import logotype from "../../assets/logotype.svg";
 import { capitalize } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { Add } from "@material-ui/icons";
 
 export default function SideBar({ user, page, setPage }) {
   const [collections, setCollections] = useState(null);
@@ -38,6 +39,13 @@ export default function SideBar({ user, page, setPage }) {
             </div>
           </Link>
         ))}
+        <div className="add">
+          <Link to="/new">
+            <div className="clickable">
+              <Add />
+            </div>
+          </Link>
+        </div>
       </div>
       <button onClick={auth.signOut}>
         <SignOutIcon />
