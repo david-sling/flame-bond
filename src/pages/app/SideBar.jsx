@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { auth, firestore } from "../../services/firebase";
+import { auth } from "../../services/firebase";
+import { getCollections } from "../../services/actions";
 
 import SignOutIcon from "@material-ui/icons/ExitToApp";
 import Arrow from "@material-ui/icons/ArrowForwardIos";
@@ -12,17 +13,12 @@ export default function SideBar({ user, page, setPage }) {
   const [collections, setCollections] = useState(null);
 
   useEffect(() => {
-    getCollections();
+    getCollections(setCollections);
   }, []);
-
-  const getCollections = async () => {
-    const data = await firestore.get("_collections");
-    setCollections(data);
-  };
 
   return (
     <div className="SideBar">
-      <Link to=".">
+      <Link to="/">
         <div className="logo">
           <img src={logotype} alt="" />
         </div>

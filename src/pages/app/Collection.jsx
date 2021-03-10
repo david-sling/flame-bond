@@ -1,13 +1,15 @@
 import { Add, Edit } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { firestore } from "../../services/firebase";
-import { useParams } from "react-router";
+import { Redirect, useParams } from "react-router";
 import Header from "../../components/Header";
+import { Link } from "react-router-dom";
 
 export default function Collection({ setPage }) {
   const { collectionId } = useParams();
   const [collection, setCollection] = useState(null);
   const [schema, setSchema] = useState(null);
+  const [redirect, setRedirect] = useState(null);
 
   useEffect(() => {
     setPage(collectionId);
@@ -26,21 +28,24 @@ export default function Collection({ setPage }) {
     setCollection(data);
     console.log(data);
   };
+  if (redirect) return <Redirect to={redirect} />;
 
   return (
     <div className="Collection">
-      <Header title={schema?.name} url={collectionId}>
+      <Header title={schema?.name} url={[collectionId]}>
         <button className="blue">
           <p>Edit</p>
           <Edit />
         </button>
-        <button className="green">
-          <p>New</p>
-          <Add />
-        </button>
+        <Link to={`/${collectionId}/new`}>
+          <button className="green">
+            <p>New</p>
+            <Add />
+          </button>
+        </Link>
       </Header>
       <section>
-        <table>
+        <table id="collection">
           <thead>
             <tr>
               <th>idx</th>
@@ -52,11 +57,20 @@ export default function Collection({ setPage }) {
           <tbody>
             {schema &&
               collection?.map((item) => (
-                <tr key={item.id}>
+                <tr
+                  key={item.id}
+                  onClick={() => setRedirect(`/${collectionId}/${item.id}`)}
+                >
+                  {/* <Link to={`/${collectionId}/${item.id}`}> */}
                   <td>{item.idx + 1}</td>
                   <td>{item.id}</td>
                   <td>{item[schema._master]}</td>
-                  <td>{JSON.stringify(item._published)}</td>
+                  <td>
+                    <ul>
+                      <li>{item._published ? "Active" : "Draft"}</li>
+                    </ul>
+                  </td>
+                  {/* </Link> */}
                 </tr>
               ))}
           </tbody>

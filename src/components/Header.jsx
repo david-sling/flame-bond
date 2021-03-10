@@ -6,7 +6,7 @@ export default function Header({ title, url, children }) {
     <header>
       <div className="text">
         <h1>{title}</h1>
-        <p className="url">/{url}</p>
+        <p className="url">/{url.join("/")}</p>
       </div>
       <div className="buttons">{children}</div>
     </header>

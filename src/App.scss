@@ -252,7 +252,7 @@ $green: #59cc12;
       }
       p {
         color: white;
-        font-weight: bold;
+        font-weight: 500;
         font-size: 1.5rem;
         letter-spacing: 3px;
       }
@@ -280,55 +280,71 @@ $green: #59cc12;
   align-items: stretch;
 }
 
-.Collection {
-  flex: 1;
+header {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-
-  header {
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 40px;
+  h1 {
+    font-size: 4rem;
+    color: $primary;
+    letter-spacing: 3px;
+    font-weight: 500;
+    line-height: 5rem;
+  }
+  p.url {
+    color: #555;
+    font-size: 1.3rem;
+  }
+  .buttons {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    h1 {
-      font-size: 5rem;
-      color: $primary;
-      letter-spacing: 3px;
-      font-weight: 500;
-      line-height: 5rem;
+    button {
+      margin-left: 20px;
     }
-    p.url {
-      color: #555;
-      font-size: 1.3rem;
+  }
+
+  .Collection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+table#collection {
+  align-self: stretch;
+  margin: 20px;
+  box-shadow: 5px 4px 13px 0 #00000033;
+  border-spacing: 0px;
+  thead {
+    background-color: $primary;
+    color: white;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+  }
+  tbody {
+    flex-direction: column;
+    align-items: stretch;
+    tr:nth-child(even) {
+      background-color: lighten($color: $primary, $amount: 45);
     }
-    .buttons {
-      display: flex;
-      button {
-        margin-left: 20px;
+    tr {
+      transition: 0.2s;
+      height: 60px;
+      cursor: pointer;
+      &:hover {
+        // opacity: 0.8;
+        height: 100px;
       }
     }
   }
-  table {
-    align-self: stretch;
-    margin: 20px;
-    box-shadow: 5px 4px 13px 0 #00000033;
-    border-spacing: 0px;
-    thead {
-      background-color: $primary;
-      color: white;
-      letter-spacing: 0.1rem;
-      font-size: 1rem;
-    }
-    tbody {
-      tr:nth-child(even) {
-        background-color: lighten($color: $primary, $amount: 45);
-      }
-    }
-    td,
-    th {
-      text-align: center;
-      padding: 10px;
+  td,
+  th {
+    text-align: center;
+    padding: 25px;
+    ul {
+      display: flex;
+      width: 50px;
+      margin: 0 auto;
     }
   }
 }
@@ -337,4 +353,32 @@ section {
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin: 20px;
+    .field {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      * {
+        font-size: 1rem;
+      }
+      label {
+        font-size: 1.5rem;
+      }
+      input,
+      textarea {
+        border: none;
+        background-color: #dbdbdb;
+        padding: 10px 20px;
+        resize: vertical;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
 }
