@@ -28,6 +28,7 @@ const createCollection = async (collectionId, name, setRedirect) => {
 
 const removeCollection = async (collectionId) => {
   await firestore.remove("_collections", collectionId);
+  firestore.deleteCollection(collectionId);
 };
 
 //ENTRY

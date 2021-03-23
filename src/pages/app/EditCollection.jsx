@@ -8,9 +8,10 @@ import {
   getSchema,
   updateSchema,
   removeCollection,
+  getCollections,
 } from "../../services/actions";
 
-export default function EditCollection({ setPage }) {
+export default function EditCollection({ setPage, setCollections }) {
   const { collectionId } = useParams();
   const [collection, setCollection] = useState(null);
   const [schema, setSchema] = useState(null);
@@ -47,6 +48,7 @@ export default function EditCollection({ setPage }) {
   const handleDelete = async () => {
     await removeCollection(collectionId);
     setDeleted(true);
+    getCollections(setCollections);
   };
 
   if (deleted) return <Redirect to="/" />;

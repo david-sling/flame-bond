@@ -3,9 +3,9 @@ import { ArrowRight } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import Header from "../../components/Header";
-import { createCollection } from "../../services/actions";
+import { createCollection, getCollections } from "../../services/actions";
 
-export default function NewCollection() {
+export default function NewCollection({ setCollections }) {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [urlChanged, setUrlChanged] = useState(false);
@@ -24,6 +24,7 @@ export default function NewCollection() {
     if (!name) return alert('Field "name" is required');
     if (!url) return alert('Field "url" is required');
     createCollection(url, name, setRedirect);
+    getCollections(setCollections);
   };
 
   if (redirect) return <Redirect to={redirect} />;

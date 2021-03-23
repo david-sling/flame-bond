@@ -10,9 +10,13 @@ import { capitalize } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Add } from "@material-ui/icons";
 
-export default function SideBar({ user, page, setPage }) {
-  const [collections, setCollections] = useState(null);
-
+export default function SideBar({
+  user,
+  page,
+  setPage,
+  collections,
+  setCollections,
+}) {
   useEffect(() => {
     getCollections(setCollections);
   }, []);

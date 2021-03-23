@@ -29,6 +29,15 @@ const remove = async (collection, doc) => {
   await db.collection(collection).doc(doc).delete();
 };
 
-const firestore = { get, getOne, add, set, remove, db };
+const deleteCollection = async (collection) => {
+  const ref = db.collection(collection);
+  const snapshot = await ref.get();
+  const data = snapshot.docs.forEach((doc, idx) => {
+    ref.doc(doc.id).delete();
+  });
+  return data;
+};
+
+const firestore = { get, getOne, add, set, remove, db, deleteCollection };
 
 export default firestore;
