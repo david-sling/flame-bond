@@ -32,11 +32,11 @@ Change SCSS variables for
 
 inside src/App.scss
 
----
-
 #### Advanced Customization
 
 Feel free to play around with the React components inside src/components & src/pages
+
+---
 
 ### Actions:
 
