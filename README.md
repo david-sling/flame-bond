@@ -15,6 +15,29 @@ A Content management system that connects React with Firebase
 
 ---
 
+### Customization:
+
+#### Logo
+
+replace src/assets/logo.svg with your logo
+
+#### Color
+
+Change SCSS variables for
+
+- $primary
+- $blue
+- $red
+- $green
+
+inside src/App.scss
+
+---
+
+#### Advanced Customization
+
+Feel free to play around with the React components inside src/components & src/pages
+
 ### Actions:
 
 ```js
