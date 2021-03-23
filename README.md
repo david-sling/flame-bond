@@ -18,7 +18,22 @@
 
 - Clone repository: `git clone https://github.com/david-sling/flame-bond.git`
 - configure firebase credentials in `./config/firebase.js`
+- add the following lines in your firestore rules:
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if
+          request.auth.token.email == "youremail@example.com";
+    }
+  }
+}
+```
+
 - `npm install`
+
 - `npm start`
 
 ---
