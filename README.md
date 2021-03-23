@@ -1,8 +1,16 @@
-# Flame Bond
+<h1 align="center">Flame Bond</h1>
+<p align="center">
+  <img src="./src/assets/logo.svg" alt="angular-logo" width="120px" height="120px"/>
+  <br>
+<br>
+<br>
+  A Content management system that connects React with Firebase
+  <br>
+</p>
 
-A Content management system that connects React with Firebase
-
-`🔵 IN PROGRESS`
+<p align="center">
+    🔵 IN PROGRESS
+</p>
 
 ---
 
