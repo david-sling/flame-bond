@@ -23,7 +23,9 @@ export default function Login() {
           <p>Sign in with Google</p>
         </button>
         <div className="github">
-          <img src={github} alt="GitHub logo" />
+          <a href="https://github.com/david-sling/flame-bond">
+            <img src={github} alt="GitHub logo" />
+          </a>
         </div>
       </div>
     </div>
