@@ -18,6 +18,11 @@ export default function Collection({ setPage }) {
     getSchema(collectionId, setSchema);
   }, [collectionId]);
 
+  useEffect(() => {
+    if (!schema?.name) return;
+    if (!schema?.fields?.length) setRedirect(`/${collectionId}/edit`);
+  }, [schema]);
+
   if (redirect) return <Redirect to={redirect} />;
 
   return (

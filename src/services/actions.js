@@ -6,6 +6,10 @@ const getSchema = async (collectionId, setSchema) => {
   setSchema(data);
 };
 
+const updateSchema = async (collectionId, schema) => {
+  await firestore.set("_collections", collectionId, schema);
+};
+
 //COLLECTIONS
 const getCollections = async (setCollections) => {
   const data = await firestore.get("_collections");
@@ -19,7 +23,11 @@ const getCollection = async (collectionId, setCollection) => {
 
 const createCollection = async (collectionId, name, setRedirect) => {
   await firestore.set("_collections", collectionId, { name });
-  setRedirect(`/${collectionId}`);
+  setRedirect && setRedirect(`/${collectionId}`);
+};
+
+const removeCollection = async (collectionId) => {
+  await firestore.remove("_collections", collectionId);
 };
 
 //ENTRY
@@ -44,13 +52,16 @@ const removeEntry = async (collection, entryId, setDeleted) => {
 };
 
 export {
+  //SCHEMA
   getSchema,
-  //
-  getEntry,
+  updateSchema,
+  //COLLECTIONS
   getCollections,
   getCollection,
   createCollection,
-  //
+  removeCollection,
+  //ENTRY
+  getEntry,
   createEntry,
   updateEntry,
   removeEntry,

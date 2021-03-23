@@ -7,7 +7,7 @@ export default function Entry({ entry, schema, setEntry }) {
     <section>
       <form id="grid" action="">
         {entry &&
-          schema?.fields.map((item) => {
+          schema?.fields?.map((item) => {
             if (item.key[0] == "_") return;
             return (
               <div className="field" key={item.key}>

@@ -273,7 +273,7 @@ input {
 
     h4 {
       margin: 10px 20px;
-      color: #ffeac6;
+      color: lighten($color: $primary, $amount: 40);
       letter-spacing: 3px;
       font-size: 1rem;
     }
@@ -496,6 +496,9 @@ section {
         &:hover {
           fill: $red;
         }
+      }
+      input#radio {
+        cursor: pointer;
       }
     }
     th {
