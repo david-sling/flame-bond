@@ -5,6 +5,7 @@ import Login from "./pages/auth/Login";
 import useLocalStorage from "./hooks/useLocalStorage";
 import firebase from "./services/firebase";
 import User from "./pages/app";
+import Modal from "./components/Modal";
 
 export default function App() {
   const [user, setUser] = useLocalStorage("user");
@@ -27,5 +28,10 @@ export default function App() {
 
   if (!user) return <Login />;
 
-  return <User user={user} />;
+  return (
+    <>
+      <User user={user} />
+      <Modal />
+    </>
+  );
 }

@@ -470,3 +470,64 @@ section {
     }
   }
 }
+
+.EditCollection {
+  table {
+    td {
+      vertical-align: middle;
+      text-align: center;
+      * {
+        vertical-align: middle;
+        display: inline-block;
+      }
+      select {
+        width: 100%;
+        padding: 5px 10px;
+        font-size: 1rem;
+        border: none;
+        background-color: #dbdbdb;
+        margin: 10px 0;
+        &:focus {
+          outline: none;
+        }
+      }
+      &.delete svg {
+        cursor: pointer;
+        &:hover {
+          fill: $red;
+        }
+      }
+    }
+    th {
+      text-align: left;
+    }
+    .add {
+      display: flex;
+      input {
+        border: none;
+        background-color: #dbdbdb;
+        margin-right: 20px;
+        padding: 10px 20px;
+      }
+      div {
+        padding: 10px;
+        background-color: $primary;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        box-shadow: 5px 4px 13px 0 #0000006c, inset 0 0 0 0 #0000006c;
+        transition: 0.2s;
+        cursor: pointer;
+        &:hover {
+          box-shadow: 0 0 0 0 #0000006c, inset 5px 4px 13px 0 #0000006c;
+        }
+        svg {
+          fill: white;
+        }
+      }
+    }
+  }
+}
