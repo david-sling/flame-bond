@@ -60,7 +60,7 @@ import{
 
 ---
 
-### Usage:
+### Firestore functions:
 
 ###### SCHEMA
 
