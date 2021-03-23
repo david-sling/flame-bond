@@ -1,9 +1,14 @@
 import { capitalize } from "@material-ui/core";
 import { DeleteForever, Done, Publish, Save } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Redirect, useParams } from "react-router";
 import Header from "../../components/Header";
-import { getEntry, getSchema, updateEntry } from "../../services/actions";
+import {
+  getEntry,
+  getSchema,
+  updateEntry,
+  removeEntry,
+} from "../../services/actions";
 import Entry from "./Entry";
 import FormInput from "./FormInput";
 
@@ -12,6 +17,7 @@ export default function EditEntry({ setPage }) {
   const [entry, setEntry] = useState(null);
   const [schema, setSchema] = useState(null);
   const [saved, setSaved] = useState(true);
+  const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
     setPage(collectionId);
@@ -20,13 +26,11 @@ export default function EditEntry({ setPage }) {
   }, [collectionId, entryId]);
 
   useEffect(() => {
-    // console.log({ entry });
     setSaved(false);
   }, [entry]);
 
   const handleSave = async () => {
     await updateEntry(collectionId, entryId, entry);
-    // await getEntry(collectionId, entryId, setEntry);
     setSaved(true);
   };
 
@@ -35,6 +39,12 @@ export default function EditEntry({ setPage }) {
     await updateEntry(collectionId, entryId, { ...entry, _published });
     setSaved(true);
   };
+
+  const handleDelete = async () => {
+    removeEntry(collectionId, entryId, setDeleted);
+  };
+
+  if (deleted) return <Redirect to={`/${collectionId}`} />;
 
   return (
     <div>
@@ -62,7 +72,7 @@ export default function EditEntry({ setPage }) {
           <p>{saved ? "Saved" : "Save"}</p>
           {saved ? <Done /> : <Save />}
         </button>
-        <button className="red">
+        <button onClick={handleDelete} className="red">
           <p>delete</p>
           <DeleteForever />
         </button>

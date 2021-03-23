@@ -4,7 +4,6 @@ import { firestore } from "./firebase";
 const getSchema = async (collectionId, setSchema) => {
   const data = await firestore.getOne("_collections", collectionId);
   setSchema(data);
-  console.log(data);
 };
 
 //COLLECTIONS
@@ -16,14 +15,12 @@ const getCollections = async (setCollections) => {
 const getCollection = async (collectionId, setCollection) => {
   const data = await firestore.get(collectionId);
   setCollection(data);
-  console.log(data);
 };
 
 //ENTRY
 const getEntry = async (collectionId, entryId, setEntry) => {
   const data = await firestore.getOne(collectionId, entryId);
   setEntry(data);
-  console.log(data);
 };
 
 const createEntry = async (collection, entry, setId) => {
@@ -36,6 +33,11 @@ const updateEntry = async (collection, id, entry) => {
   return true;
 };
 
+const removeEntry = async (collection, entryId, setDeleted) => {
+  await firestore.remove(collection, entryId);
+  setDeleted(true);
+};
+
 export {
   getSchema,
   getEntry,
@@ -43,4 +45,5 @@ export {
   getCollection,
   createEntry,
   updateEntry,
+  removeEntry,
 };

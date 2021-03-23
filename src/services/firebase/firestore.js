@@ -25,6 +25,10 @@ const set = async (collection, doc, object) => {
   await db.collection(collection).doc(doc).set(object, { merge: true });
 };
 
-const firestore = { get, getOne, add, set, db };
+const remove = async (collection, doc) => {
+  await db.collection(collection).doc(doc).delete();
+};
+
+const firestore = { get, getOne, add, set, remove, db };
 
 export default firestore;

@@ -1,3 +1,4 @@
+import { capitalize } from "@material-ui/core";
 import { Publish, Save } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router";
@@ -21,6 +22,15 @@ export default function NewEntry({ setPage }) {
   }, [entry]);
 
   const handleSave = () => {
+    var abort = false;
+    schema?.fields.forEach((field) => {
+      if (field.key[0] == "_") return;
+      if (!entry[field.key]) {
+        abort = true;
+        alert(`Field "${capitalize(field.key)}" is required`);
+      }
+    });
+    if (abort) return;
     createEntry(collectionId, entry, setId);
   };
 
@@ -29,10 +39,6 @@ export default function NewEntry({ setPage }) {
   return (
     <div>
       <Header title="New" url={[collectionId, "new"]}>
-        <button className="green">
-          <p>Publish</p>
-          <Publish />
-        </button>
         <button onClick={handleSave} className="blue">
           <p>Save</p>
           <Save />
