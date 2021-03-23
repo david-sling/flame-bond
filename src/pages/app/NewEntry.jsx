@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router";
 import Header from "../../components/Header";
 import { getSchema, createEntry } from "../../services/actions";
-import Entry from "./Entry";
+import Entry from "../../components/Entry";
 
 export default function NewEntry({ setPage }) {
   const { collectionId } = useParams();

@@ -9,8 +9,7 @@ import {
   updateEntry,
   removeEntry,
 } from "../../services/actions";
-import Entry from "./Entry";
-import FormInput from "./FormInput";
+import Entry from "../../components/Entry";
 
 export default function EditEntry({ setPage }) {
   const { collectionId, entryId } = useParams();
