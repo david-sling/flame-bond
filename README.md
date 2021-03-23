@@ -5,7 +5,8 @@
 <br>
 <br>
   A Content management system that connects React with Firebase
-  <br>
+  <br><br>
+  <img src="./src/assets/reactplusfirebase.svg" alt="angular-logo" width="70px"/>
 </p>
 
 <p align="center">
