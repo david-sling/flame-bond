@@ -81,10 +81,6 @@ import{
 } from './services/actions
 ```
 
----
-
-### Firestore functions:
-
 ###### SCHEMA
 
 #### `getSchema()`

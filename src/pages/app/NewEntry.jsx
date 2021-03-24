@@ -20,15 +20,8 @@ export default function NewEntry({ setPage }) {
   }, [collectionId]);
 
   const handleSave = () => {
-    var abort = false;
-    schema?.fields.forEach((field) => {
-      if (field.key[0] == "_") return;
-      if (!entry[field.key]) {
-        abort = true;
-        alert(`Field "${capitalize(field.key)}" is required`);
-      }
-    });
-    if (abort) return;
+    if (!entry[schema._master])
+      return alert(`Field "${schema._master}" is required`);
     createEntry(collectionId, entry, setId);
   };
 
