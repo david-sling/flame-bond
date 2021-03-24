@@ -13,7 +13,7 @@ const updateSchema = async (collectionId, schema) => {
 //COLLECTIONS
 const getCollections = async (setCollections, setUnauthorized) => {
   try {
-    const data = await firestore.get("_collections");
+    const data = await firestore.get("_collections", false);
     setCollections(data);
   } catch (error) {
     console.error(error);
@@ -27,7 +27,7 @@ const getCollection = async (collectionId, setCollection) => {
 };
 
 const createCollection = async (collectionId, name, setRedirect) => {
-  await firestore.set("_collections", collectionId, { name });
+  await firestore.set("_collections", collectionId, { name }, true);
   setRedirect && setRedirect(`/${collectionId}`);
 };
 

@@ -6,8 +6,9 @@ export default function Dashboard({ setPage }) {
     setPage(null);
   }, []);
   return (
-    <section>
+    <div>
       <Header title="Dashboard" />
-    </section>
+      <section></section>
+    </div>
   );
 }

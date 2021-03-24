@@ -8,7 +8,9 @@ import Entry from "../../components/Entry";
 
 export default function NewEntry({ setPage }) {
   const { collectionId } = useParams();
-  const [entry, setEntry] = useState({ _published: false });
+  const [entry, setEntry] = useState({
+    _published: false,
+  });
   const [schema, setSchema] = useState(null);
   const [id, setId] = useState(null);
 
@@ -16,10 +18,6 @@ export default function NewEntry({ setPage }) {
     setPage(collectionId);
     getSchema(collectionId, setSchema);
   }, [collectionId]);
-
-  useEffect(() => {
-    console.log(entry);
-  }, [entry]);
 
   const handleSave = () => {
     var abort = false;
@@ -34,7 +32,7 @@ export default function NewEntry({ setPage }) {
     createEntry(collectionId, entry, setId);
   };
 
-  if (id) return <Redirect to={`/${collectionId}/${id}`} />;
+  if (id) return <Redirect to={`/${collectionId}`} />;
 
   return (
     <div>

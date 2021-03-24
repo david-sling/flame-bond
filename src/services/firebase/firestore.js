@@ -1,8 +1,9 @@
 import firebase from "./init";
 const db = firebase.firestore();
 
-const get = async (collection) => {
-  const ref = db.collection(collection);
+const get = async (collection, orderBy = "_dateCreated") => {
+  var ref = db.collection(collection);
+  if (orderBy) ref = ref.orderBy(orderBy);
   const snapshot = await ref.get();
   const data = snapshot.docs.map((doc, idx) => {
     return { ...doc.data(), id: doc.id, idx };
@@ -17,12 +18,25 @@ const getOne = async (collection, doc) => {
 };
 
 const add = async (collection, object) => {
-  const res = await db.collection(collection).add(object);
+  const res = await db.collection(collection).add({
+    ...object,
+    _dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
+    _dateUpdated: firebase.firestore.FieldValue.serverTimestamp(),
+  });
   return res.id;
 };
 
-const set = async (collection, doc, object) => {
-  await db.collection(collection).doc(doc).set(object, { merge: true });
+const set = async (collection, doc, object, create = false) => {
+  var obj = {
+    ...object,
+    _dateUpdated: firebase.firestore.FieldValue.serverTimestamp(),
+  };
+  if (create)
+    obj = {
+      ...obj,
+      _dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+  await db.collection(collection).doc(doc).set(obj, { merge: true });
 };
 
 const remove = async (collection, doc) => {
