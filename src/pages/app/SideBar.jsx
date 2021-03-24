@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "../../services/firebase";
 import { getCollections } from "../../services/actions";
-
 import SignOutIcon from "@material-ui/icons/ExitToApp";
 import Arrow from "@material-ui/icons/ArrowForwardIos";
-
 import logotype from "../../assets/logotype.svg";
-import { capitalize, Snackbar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Add } from "@material-ui/icons";
-import Alert from "../../components/Alert";
 
 export default function SideBar({
-  user,
   page,
-  setPage,
   collections,
   setCollections,
   setError,
@@ -26,8 +20,6 @@ export default function SideBar({
   useEffect(() => {
     console.log({ collections });
   }, [collections]);
-
-  const handleClose = () => {};
 
   if (unauthorized) {
     // alert("unauthorized");

@@ -1,5 +1,5 @@
 import { capitalize } from "@material-ui/core";
-import { Publish, Save } from "@material-ui/icons";
+import { Save } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router";
 import Header from "../../components/Header";

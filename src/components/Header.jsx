@@ -1,4 +1,3 @@
-import { capitalize } from "@material-ui/core";
 import React from "react";
 
 export default function Header({ title, url, children }) {

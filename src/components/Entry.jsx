@@ -8,7 +8,7 @@ export default function Entry({ entry, schema, setEntry }) {
       <form id="grid" action="">
         {entry &&
           schema?.fields?.map((item) => {
-            if (item.key[0] == "_") return;
+            if (item.key[0] == "_") return null;
             return (
               <div className="field" key={item.key}>
                 <label htmlFor="">{capitalize(item.key)}</label>

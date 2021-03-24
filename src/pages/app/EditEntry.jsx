@@ -1,4 +1,3 @@
-import { capitalize } from "@material-ui/core";
 import { DeleteForever, Done, Publish, Save } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router";

@@ -1,6 +1,5 @@
 import { Add, Edit } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
-import { firestore } from "../../services/firebase";
 import { Redirect, useParams } from "react-router";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
