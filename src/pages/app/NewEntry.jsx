@@ -39,7 +39,7 @@ export default function NewEntry({ setPage }) {
   return (
     <div>
       <Header title="New" url={[collectionId, "new"]}>
-        <button onClick={handleSave} className="blue">
+        <button onClick={handleSave} className="blue button">
           <p>Save</p>
           <Save />
         </button>

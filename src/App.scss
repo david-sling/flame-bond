@@ -47,7 +47,7 @@ input {
     color: unset;
     text-decoration: none;
   }
-  button,
+  .button,
   #button {
     border: none;
     background-color: white;
@@ -205,7 +205,7 @@ input {
     @include phone() {
       flex-direction: column;
     }
-    button {
+    .button {
       background-color: white;
     }
     .github#button {
@@ -283,9 +283,20 @@ input {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background-color: $primary;
       cursor: pointer;
+      transition: 0.2s;
+      svg {
+        overflow: visible;
+        path {
+          transition: 0.2s;
+        }
+      }
       &:hover {
         background-color: lighten($color: $primary, $amount: 10);
+        svg path {
+          transform: translateX(20px);
+        }
       }
       p {
         color: white;
@@ -298,13 +309,15 @@ input {
         p {
           color: $primary;
         }
-        svg {
+        svg path {
           fill: $primary;
+          transform: translateX(60px);
+          transition: 0.5s;
         }
       }
     }
   }
-  button {
+  .button {
     align-self: center;
     margin: 20px;
   }
@@ -335,7 +348,7 @@ header {
   }
   .buttons {
     display: flex;
-    button {
+    .button {
       margin-left: 20px;
     }
   }

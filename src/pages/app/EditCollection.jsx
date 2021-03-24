@@ -56,11 +56,14 @@ export default function EditCollection({ setPage, setCollections }) {
   return (
     <div className="EditCollection">
       <Header title={schema?.name} url={[collectionId]}>
-        <button onClick={handleSave} className={saved ? "blue active" : "blue"}>
+        <button
+          onClick={handleSave}
+          className={saved ? "blue active button" : "blue button"}
+        >
           <p>{saved ? "Saved" : "Save"}</p>
           {saved ? <Done /> : <Save />}
         </button>
-        <button onClick={handleDelete} className="red">
+        <button onClick={handleDelete} className="red button">
           <p>Delete</p>
           <DeleteForever />
         </button>

@@ -6,9 +6,10 @@ import SignOutIcon from "@material-ui/icons/ExitToApp";
 import Arrow from "@material-ui/icons/ArrowForwardIos";
 
 import logotype from "../../assets/logotype.svg";
-import { capitalize } from "@material-ui/core";
+import { capitalize, Snackbar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Add } from "@material-ui/icons";
+import Alert from "../../components/Alert";
 
 export default function SideBar({
   user,
@@ -16,45 +17,62 @@ export default function SideBar({
   setPage,
   collections,
   setCollections,
+  setError,
 }) {
+  const [unauthorized, setUnauthorized] = useState(false);
   useEffect(() => {
-    getCollections(setCollections);
+    getCollections(setCollections, setUnauthorized);
   }, []);
+  useEffect(() => {
+    console.log({ collections });
+  }, [collections]);
+
+  const handleClose = () => {};
+
+  if (unauthorized) {
+    // alert("unauthorized");
+    auth.signOut();
+    setError("Access Unauthorized");
+  }
 
   return (
-    <div className="SideBar">
-      <Link to="/">
-        <div className="logo">
-          <img src={logotype} alt="" />
+    <>
+      <div className="SideBar">
+        <Link to="/">
+          <div className="logo">
+            <img src={logotype} alt="" />
+          </div>
+        </Link>
+        <div className="collectionsList">
+          <h4>COLLECTIONS</h4>
+          {collections?.map((collection) => (
+            <Link key={collection.id} to={`/${collection.id}`}>
+              <div
+                className={
+                  page == collection.id ? "collection open" : "collection"
+                }
+                // onClick={() => setPage(collection.id)}
+              >
+                <p>{collection.name}</p>
+                <div id="svg">
+                  <Arrow style={{ color: "white" }} />
+                </div>
+              </div>
+            </Link>
+          ))}
+          <div className="add">
+            <Link to="/new">
+              <div className="clickable">
+                <Add />
+              </div>
+            </Link>
+          </div>
         </div>
-      </Link>
-      <div className="collectionsList">
-        <h4>COLLECTIONS</h4>
-        {collections?.map((collection) => (
-          <Link key={collection.id} to={`/${collection.id}`}>
-            <div
-              className={
-                page == collection.id ? "collection open" : "collection"
-              }
-              // onClick={() => setPage(collection.id)}
-            >
-              <p>{collection.name}</p>
-              <Arrow style={{ color: "white" }} />
-            </div>
-          </Link>
-        ))}
-        <div className="add">
-          <Link to="/new">
-            <div className="clickable">
-              <Add />
-            </div>
-          </Link>
-        </div>
+        <button className="button" onClick={auth.signOut}>
+          <SignOutIcon />
+          <p>Sign Out</p>
+        </button>
       </div>
-      <button onClick={auth.signOut}>
-        <SignOutIcon />
-        <p>Sign Out</p>
-      </button>
-    </div>
+    </>
   );
 }

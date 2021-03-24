@@ -32,7 +32,7 @@ export default function NewCollection({ setCollections }) {
   return (
     <div>
       <Header title="New Collection" url={["new"]}>
-        <button onClick={handleNext} className="green">
+        <button onClick={handleNext} className="green button">
           <p>Next</p>
           <ArrowRight />
         </button>

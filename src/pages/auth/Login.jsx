@@ -6,6 +6,9 @@ import github from "../../assets/github.svg";
 import { auth } from "../../services/firebase";
 
 export default function Login() {
+  const login = async () => {
+    auth.google.login();
+  };
   return (
     <div className="Login">
       <div className="head">
@@ -18,7 +21,7 @@ export default function Login() {
         </div>
       </div>
       <div className="buttons">
-        <button onClick={auth.google.login}>
+        <button className="button" onClick={login}>
           <img src={google} alt="Google logo" />
           <p>Sign in with Google</p>
         </button>

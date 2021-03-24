@@ -11,9 +11,14 @@ const updateSchema = async (collectionId, schema) => {
 };
 
 //COLLECTIONS
-const getCollections = async (setCollections) => {
-  const data = await firestore.get("_collections");
-  setCollections(data);
+const getCollections = async (setCollections, setUnauthorized) => {
+  try {
+    const data = await firestore.get("_collections");
+    setCollections(data);
+  } catch (error) {
+    console.error(error);
+    setUnauthorized(true);
+  }
 };
 
 const getCollection = async (collectionId, setCollection) => {

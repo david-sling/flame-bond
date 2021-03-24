@@ -53,7 +53,7 @@ export default function EditEntry({ setPage }) {
       >
         <button
           onClick={() => changePublished(!entry?._published)}
-          className={entry?._published ? "green active" : "green"}
+          className={entry?._published ? "green active button" : "green button"}
         >
           {entry?._published ? (
             <>
@@ -67,11 +67,14 @@ export default function EditEntry({ setPage }) {
             </>
           )}
         </button>
-        <button onClick={handleSave} className={saved ? "blue active" : "blue"}>
+        <button
+          onClick={handleSave}
+          className={saved ? "blue active button" : "blue button"}
+        >
           <p>{saved ? "Saved" : "Save"}</p>
           {saved ? <Done /> : <Save />}
         </button>
-        <button onClick={handleDelete} className="red">
+        <button onClick={handleDelete} className="red button">
           <p>delete</p>
           <DeleteForever />
         </button>
