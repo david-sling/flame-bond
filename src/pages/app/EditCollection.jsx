@@ -32,7 +32,8 @@ export default function EditCollection({ setPage, setCollections }) {
     setSchema({ ...schema, _master: schema.fields[0].key });
   }, [schema]);
 
-  const addField = () => {
+  const addField = (e) => {
+    e.preventDefault();
     if (!newField) return;
     var fields = schema.fields || [];
     fields = [...fields, { key: newField, type: "text" }];
@@ -120,15 +121,17 @@ export default function EditCollection({ setPage, setCollections }) {
               ))}
             <tr>
               <th className="add">
-                <input
-                  type="text"
-                  placeholder="New field"
-                  value={newField}
-                  onChange={(e) => setNewField(e.target.value)}
-                />
-                <div onClick={addField}>
-                  <Add />
-                </div>
+                <form action="submit" onSubmit={addField}>
+                  <input
+                    type="text"
+                    placeholder="New field"
+                    value={newField}
+                    onChange={(e) => setNewField(e.target.value)}
+                  />
+                  <button type="submit">
+                    <Add />
+                  </button>
+                </form>
               </th>
             </tr>
           </tbody>

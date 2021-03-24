@@ -25,9 +25,13 @@ export default function EditEntry({ setPage }) {
 
   useEffect(() => {
     setSaved(false);
+    console.log(entry);
   }, [entry]);
 
   const handleSave = async () => {
+    console.log(schema._master);
+    if (!entry[schema._master])
+      return alert(`Field: "${schema._master}" is required`);
     await updateEntry(collectionId, entryId, entry);
     setSaved(true);
   };

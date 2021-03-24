@@ -532,13 +532,17 @@ section {
     }
     .add {
       display: flex;
+      form {
+        display: flex;
+      }
       input {
         border: none;
         background-color: #dbdbdb;
         margin-right: 20px;
         padding: 10px 20px;
       }
-      div {
+      button {
+        border: none;
         padding: 10px;
         background-color: $primary;
         display: flex;
