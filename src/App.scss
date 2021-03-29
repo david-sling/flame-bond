@@ -243,7 +243,8 @@ input {
       width: 100%;
     }
   }
-  .collectionsList {
+  .collectionsList,
+  .gallery {
     flex: 1 1;
     overflow-y: scroll;
     align-items: stretch;
@@ -441,6 +442,9 @@ section {
           outline: none;
         }
       }
+      textarea {
+        min-height: 200px;
+      }
     }
   }
 }
@@ -563,4 +567,69 @@ section {
       }
     }
   }
+}
+
+.Gallery {
+  width: 100%;
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    max-width: 100%;
+    grid-gap: 5px;
+    .grid-item {
+      height: 250px;
+      width: 250px;
+      background-color: black;
+      &:hover {
+        img {
+          opacity: 0.5;
+        }
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      &.newPhoto {
+        cursor: pointer;
+        background-color: white;
+        position: relative;
+        &:hover .design {
+          background-color: $blue;
+          border: 0px dashed white;
+          svg {
+            fill: white;
+            transform: scale(2);
+          }
+        }
+        input {
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+        }
+        .design {
+          position: absolute;
+          width: 90%;
+          height: 90%;
+          border: 5px dashed $primary;
+          top: 0;
+          left: 0;
+          border-radius: 20px;
+          margin: 5%;
+          transition: 1s;
+          svg {
+            fill: $primary;
+            transition: 0.2s;
+            transform: scale(3);
+          }
+        }
+      }
+    }
+  }
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

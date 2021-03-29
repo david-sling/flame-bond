@@ -59,6 +59,21 @@ export default function SideBar({
               </div>
             </Link>
           </div>
+          <div className="gallery">
+            <Link to={`/_gallery`}>
+              <div
+                className={
+                  page == "_gallery" ? "collection open" : "collection"
+                }
+                // onClick={() => setPage(collection.id)}
+              >
+                <p>Gallery</p>
+                <div id="svg">
+                  <Arrow style={{ color: "white" }} />
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
         <button className="button" onClick={auth.signOut}>
           <SignOutIcon />
