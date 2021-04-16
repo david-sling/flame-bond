@@ -12,13 +12,17 @@ export default function Entry({ entry, schema, setEntry }) {
             return (
               <div className="field" key={item.key}>
                 <label htmlFor="">{capitalize(item.key)}</label>
-                <FormInput
-                  setValue={(v) => {
-                    setEntry({ ...entry, [item.key]: v });
-                  }}
-                  value={entry[item.key]}
-                  type={schema.fields.find((k) => k.key == item.key).type}
-                />
+                {schema._readOnly ? (
+                  <p>{entry[item.key]}</p>
+                ) : (
+                  <FormInput
+                    setValue={(v) => {
+                      setEntry({ ...entry, [item.key]: v });
+                    }}
+                    value={entry[item.key]}
+                    type={schema.fields.find((k) => k.key == item.key).type}
+                  />
+                )}
               </div>
             );
           })}

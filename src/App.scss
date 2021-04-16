@@ -498,6 +498,14 @@ section {
       font-size: 0.7rem;
       margin-top: 3px;
     }
+    .readOnly {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      p {
+        margin-right: 20px;
+      }
+    }
   }
 }
 
@@ -579,10 +587,35 @@ section {
     .grid-item {
       height: 250px;
       width: 250px;
+      position: relative;
       background-color: black;
+      .deleteIcon {
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 40px;
+        width: 40px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        border-radius: 50%;
+        svg {
+          fill: transparent;
+        }
+        &:hover {
+          background-color: white;
+          svg {
+            fill: $red;
+          }
+        }
+      }
       &:hover {
         img {
           opacity: 0.5;
+        }
+        svg {
+          fill: white;
         }
       }
 
@@ -607,6 +640,7 @@ section {
           opacity: 0;
           width: 100%;
           height: 100%;
+          cursor: pointer;
         }
         .design {
           position: absolute;
@@ -618,10 +652,22 @@ section {
           border-radius: 20px;
           margin: 5%;
           transition: 1s;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
           svg {
             fill: $primary;
             transition: 0.2s;
             transform: scale(3);
+          }
+          p {
+            text-align: center;
+            margin: 5px;
+            // display: none;
+            font-size: 0.75rem;
+            position: absolute;
+            bottom: 0;
           }
         }
       }

@@ -10,6 +10,7 @@ export default function NewCollection({ setCollections }) {
   const [url, setUrl] = useState("");
   const [urlChanged, setUrlChanged] = useState(false);
   const [redirect, setRedirect] = useState(null);
+  const [_readOnly, setReadOnly] = useState(false);
 
   useEffect(() => {
     if (!url) setUrlChanged(false);
@@ -23,7 +24,7 @@ export default function NewCollection({ setCollections }) {
   const handleNext = () => {
     if (!name) return alert('Field "name" is required');
     if (!url) return alert('Field "url" is required');
-    createCollection(url, name, setRedirect);
+    createCollection(url, { name, _readOnly }, setRedirect);
     getCollections(setCollections);
   };
 
@@ -65,6 +66,17 @@ export default function NewCollection({ setCollections }) {
             />
           </div>
           <p className="note">* This cannot be changed later</p>
+          <br />
+          <div className="readOnly" onClick={() => setReadOnly(!_readOnly)}>
+            <p>Read Only:</p>
+            <input
+              type="checkbox"
+              value={_readOnly}
+              checked={_readOnly}
+              name="readOnly"
+              id="readOnly"
+            />
+          </div>
         </form>
       </section>
     </div>

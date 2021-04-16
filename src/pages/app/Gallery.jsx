@@ -1,6 +1,7 @@
-import { Add } from "@material-ui/icons";
+import { Add, DeleteForever } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
+import { addImages, getImages } from "../../services/actions";
 import { storage } from "../../services/firebase";
 
 export default function Gallery({ setPage }) {
@@ -9,16 +10,17 @@ export default function Gallery({ setPage }) {
 
   useEffect(() => {
     setPage("_gallery");
-    storage.getUrl(setGallery);
+    getImages(setGallery);
   }, [setPage]);
 
   const handleUpload = async (e) => {
     setUploading(true);
-    if (e.target.files[0].name) return setUploading(false);
-    console.log(e.target.files[0]);
-    await storage.upload(e.target.files[0]);
-    await storage.getUrl(setGallery);
+    addImages(e.target.files[0], setGallery);
     setUploading(false);
+  };
+
+  const handleRemove = (url) => {
+    storage.remove(url, setGallery);
   };
 
   return (
@@ -28,13 +30,18 @@ export default function Gallery({ setPage }) {
         <div className="grid">
           <div className="grid-item newPhoto">
             <div className="design center">
-              {uploading ? "uploading" : <Add />}
+              {uploading
+                ? "uploading"
+                : [<Add />, <p>Drag and drop or click to upload</p>]}
             </div>
-            <input onChange={handleUpload} type="file" />
+            <input onChange={handleUpload} type="file" accept="image/*" />
           </div>
           {gallery.map((item) => (
             <div key={item} className="grid-item">
               <img src={item} />
+              <div className="deleteIcon" onClick={() => handleRemove(item)}>
+                <DeleteForever />
+              </div>
             </div>
           ))}
         </div>

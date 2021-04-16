@@ -25,8 +25,8 @@ export default function EditEntry({ setPage }) {
 
   useEffect(() => {
     setSaved(false);
-    console.log(entry);
-  }, [entry]);
+    console.log({ schema });
+  }, [schema]);
 
   const handleSave = async () => {
     console.log(schema._master);
@@ -54,33 +54,39 @@ export default function EditEntry({ setPage }) {
         title={schema && entry[schema._master]}
         url={[collectionId, entryId]}
       >
-        <button
-          onClick={() => changePublished(!entry?._published)}
-          className={entry?._published ? "green active button" : "green button"}
-        >
-          {entry?._published ? (
-            <>
-              <p>Published</p>
-              <Done />
-            </>
-          ) : (
-            <>
-              <p>Publish</p>
-              <Publish />
-            </>
-          )}
-        </button>
-        <button
-          onClick={handleSave}
-          className={saved ? "blue active button" : "blue button"}
-        >
-          <p>{saved ? "Saved" : "Save"}</p>
-          {saved ? <Done /> : <Save />}
-        </button>
-        <button onClick={handleDelete} className="red button">
-          <p>delete</p>
-          <DeleteForever />
-        </button>
+        {!schema?._readOnly && (
+          <>
+            <button
+              onClick={() => changePublished(!entry?._published)}
+              className={
+                entry?._published ? "green active button" : "green button"
+              }
+            >
+              {entry?._published ? (
+                <>
+                  <p>Published</p>
+                  <Done />
+                </>
+              ) : (
+                <>
+                  <p>Publish</p>
+                  <Publish />
+                </>
+              )}
+            </button>
+            <button
+              onClick={handleSave}
+              className={saved ? "blue active button" : "blue button"}
+            >
+              <p>{saved ? "Saved" : "Save"}</p>
+              {saved ? <Done /> : <Save />}
+            </button>
+            <button onClick={handleDelete} className="red button">
+              <p>delete</p>
+              <DeleteForever />
+            </button>
+          </>
+        )}
       </Header>
       <Entry schema={schema} entry={entry} setEntry={setEntry} />
     </div>

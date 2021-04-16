@@ -1,4 +1,5 @@
-import { firestore } from "./firebase";
+import { KeyboardReturnSharp } from "@material-ui/icons";
+import { firestore, storage } from "./firebase";
 
 //SCHEMA
 const getSchema = async (collectionId, setSchema) => {
@@ -26,8 +27,8 @@ const getCollection = async (collectionId, setCollection) => {
   setCollection(data);
 };
 
-const createCollection = async (collectionId, name, setRedirect) => {
-  await firestore.set("_collections", collectionId, { name }, true);
+const createCollection = async (collectionId, obj, setRedirect) => {
+  await firestore.set("_collections", collectionId, obj, true);
   setRedirect && setRedirect(`/${collectionId}`);
 };
 
@@ -57,6 +58,19 @@ const removeEntry = async (collection, entryId, setDeleted) => {
   setDeleted(true);
 };
 
+//IMAGES
+const getImages = async (setGallery) => {
+  const urls = await storage.getUrl("/image", setGallery);
+  return urls;
+};
+
+const addImages = async (file, setGallery) => {
+  if (!file.name) return;
+  console.log(file);
+  await storage.upload(file, setGallery);
+  await storage.getUrl("/image", setGallery);
+};
+
 export {
   //SCHEMA
   getSchema,
@@ -71,4 +85,7 @@ export {
   createEntry,
   updateEntry,
   removeEntry,
+  //IMAGES
+  addImages,
+  getImages,
 };
