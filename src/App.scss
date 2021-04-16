@@ -396,11 +396,14 @@ input {
 
 header {
   display: flex;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
   align-items: flex-start;
   padding: 20px 40px;
+  .text {
+    word-break: break-word;
+  }
   h1 {
     font-size: 4rem;
     color: $primary;
@@ -415,15 +418,20 @@ header {
   p.url {
     color: #555;
     font-size: 1.3rem;
+    @include tablet() {
+      font-size: 0.7rem;
+    }
   }
   .buttons {
     display: flex;
-    margin-bottom: 20px;
-    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: stretch;
     justify-self: stretch;
     top: 0;
     .button {
       margin-right: 20px;
+      margin-bottom: 20px;
     }
   }
 
