@@ -21,7 +21,7 @@ export default function Login() {
         </div>
       </div>
       <div className="buttons">
-        <button className="button" onClick={login}>
+        <button className="button" id="button" onClick={login}>
           <img src={google} alt="Google logo" />
           <p>Sign in with Google</p>
         </button>

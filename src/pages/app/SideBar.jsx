@@ -75,7 +75,7 @@ export default function SideBar({
             </Link>
           </div>
         </div>
-        <button className="button" onClick={auth.signOut}>
+        <button className="button" id="button" onClick={auth.signOut}>
           <SignOutIcon />
           <p>Sign Out</p>
         </button>

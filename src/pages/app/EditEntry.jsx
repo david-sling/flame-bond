@@ -25,7 +25,7 @@ export default function EditEntry({ setPage }) {
 
   useEffect(() => {
     setSaved(false);
-    console.log({ schema });
+    console.log({ schema, entry });
   }, [schema, entry]);
 
   const handleSave = async () => {

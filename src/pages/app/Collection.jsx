@@ -28,13 +28,13 @@ export default function Collection({ setPage }) {
     <div className="Collection">
       <Header title={schema?.name} url={[collectionId]}>
         <Link to={`${collectionId}/edit`}>
-          <button className="blue button">
+          <button className="blue button" id="button">
             <p>Edit</p>
             <Edit />
           </button>
         </Link>
         <Link to={`/${collectionId}/new`}>
-          <button className="green button">
+          <button className="green button" id="button">
             <p>New</p>
             <Add />
           </button>

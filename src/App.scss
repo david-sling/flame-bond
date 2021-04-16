@@ -49,8 +49,9 @@ input {
     color: unset;
     text-decoration: none;
   }
-  .button,
-  #button {
+
+  #button,
+  header button {
     border: none;
     background-color: white;
     display: grid;
@@ -433,7 +434,7 @@ section {
       flex-direction: column;
       min-height: 0;
       * {
-        font-size: 1rem;
+        // font-size: 1rem;
       }
       label {
         font-size: 1.5rem;
@@ -452,6 +453,9 @@ section {
         min-height: 200px;
       }
       .imageInput {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         .head {
           padding: 20px;
         }
@@ -459,6 +463,46 @@ section {
           width: 100%;
           max-height: 400px;
           object-fit: contain;
+          margin-bottom: 10px;
+        }
+      }
+      .relationInput {
+        .text {
+          font-size: 1.2rem;
+          span {
+            font-weight: 800;
+          }
+        }
+        select {
+          background-color: #ffffff;
+          padding: 10px 20px;
+          font-size: 1rem;
+          margin-right: 20px;
+        }
+      }
+      .buttons {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: auto auto;
+      }
+      button {
+        background-color: white;
+        border: 1px solid $blue;
+        color: $blue;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-weight: 800;
+        letter-spacing: 2px;
+        &.remove {
+          color: $red;
+          border-color: $red;
+          &:hover {
+            background-color: $red;
+          }
+        }
+        &:hover {
+          background-color: $blue;
+          color: white;
         }
       }
     }
@@ -695,4 +739,14 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.rc-md-editor {
+  .custom-html-style pre,
+  .custom-html-style pre * {
+    background-color: #dbdbdb;
+  }
+  a {
+    text-decoration: underline;
+  }
 }
