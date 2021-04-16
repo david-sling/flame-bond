@@ -272,6 +272,7 @@ input {
   justify-content: space-between;
   background-color: $primary;
   z-index: 5;
+  overflow-y: scroll;
 
   .close {
     display: none !important;
@@ -303,7 +304,6 @@ input {
   .collectionsList,
   .gallery {
     flex: 1 1;
-    overflow-y: scroll;
     align-items: stretch;
     display: flex;
     flex-direction: column;
