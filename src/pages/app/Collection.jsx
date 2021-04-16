@@ -45,9 +45,9 @@ export default function Collection({ setPage }) {
           <thead>
             <tr>
               <th>idx</th>
-              <th>id</th>
+              <th id="hide-tab">id</th>
               <th>{schema?._master}</th>
-              <th>Published</th>
+              <th id="hide-tab">Published</th>
             </tr>
           </thead>
           <tbody>
@@ -59,9 +59,9 @@ export default function Collection({ setPage }) {
                 >
                   {/* <Link to={`/${collectionId}/${item.id}`}> */}
                   <td>{item.idx + 1}</td>
-                  <td>{item.id}</td>
+                  <td id="hide-tab">{item.id}</td>
                   <td>{item[schema._master]}</td>
-                  <td>
+                  <td id="hide-tab">
                     <ul>
                       <li>{item._published ? "Active" : "Draft"}</li>
                     </ul>

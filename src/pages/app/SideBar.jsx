@@ -5,7 +5,7 @@ import SignOutIcon from "@material-ui/icons/ExitToApp";
 import Arrow from "@material-ui/icons/ArrowForwardIos";
 import logotype from "../../assets/logotype.svg";
 import { Link } from "react-router-dom";
-import { Add } from "@material-ui/icons";
+import { Add, Close, Menu } from "@material-ui/icons";
 
 export default function SideBar({
   page,
@@ -14,6 +14,7 @@ export default function SideBar({
   setError,
 }) {
   const [unauthorized, setUnauthorized] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     getCollections(setCollections, setUnauthorized);
   }, []);
@@ -29,9 +30,9 @@ export default function SideBar({
 
   return (
     <>
-      <div className="SideBar">
+      <div className={open ? "SideBar open" : "SideBar"}>
         <Link to="/">
-          <div className="logo">
+          <div className="logo" onClick={() => setOpen(false)}>
             <img src={logotype} alt="" />
           </div>
         </Link>
@@ -40,6 +41,7 @@ export default function SideBar({
           {collections?.map((collection) => (
             <Link key={collection.id} to={`/${collection.id}`}>
               <div
+                onClick={() => setOpen(false)}
                 className={
                   page == collection.id ? "collection open" : "collection"
                 }
@@ -54,7 +56,7 @@ export default function SideBar({
           ))}
           <div className="add">
             <Link to="/new">
-              <div className="clickable">
+              <div onClick={() => setOpen(false)} className="clickable">
                 <Add />
               </div>
             </Link>
@@ -62,6 +64,7 @@ export default function SideBar({
           <div className="gallery">
             <Link to={`/_gallery`}>
               <div
+                onClick={() => setOpen(false)}
                 className={
                   page == "_gallery" ? "collection open" : "collection"
                 }
@@ -73,12 +76,24 @@ export default function SideBar({
                 </div>
               </div>
             </Link>
+            <div className="close" onClick={() => setOpen(false)}>
+              <div className="clickable onlymob">
+                <Close />
+              </div>
+            </div>
           </div>
         </div>
         <button className="button" id="button" onClick={auth.signOut}>
           <SignOutIcon />
           <p>Sign Out</p>
         </button>
+      </div>
+      <div
+        className="openSideBar"
+        id="only-phone"
+        onClick={() => setOpen(true)}
+      >
+        <Menu />
       </div>
     </>
   );

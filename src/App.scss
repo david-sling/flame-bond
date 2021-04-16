@@ -18,6 +18,12 @@ input {
   }
 }
 
+@mixin tablet {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+
 ::placeholder {
   color: #909090;
 }
@@ -37,6 +43,18 @@ input {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+#hide-tab {
+  @include tablet() {
+    display: none !important;
+  }
+}
+
+#only-phone {
+  @media (min-width: 600px) {
+    display: none;
+  }
 }
 
 * {
@@ -230,6 +248,21 @@ input {
   display: flex;
 }
 
+.openSideBar {
+  position: absolute;
+  display: flex;
+  height: 30px;
+  z-index: 3;
+  background-color: $primary;
+  transform-origin: 0 0;
+  width: 100%;
+  align-items: center;
+  padding: 0 10px;
+  svg {
+    fill: white;
+  }
+}
+
 .SideBar {
   width: 250px;
   height: 100%;
@@ -238,10 +271,33 @@ input {
   align-items: stretch;
   justify-content: space-between;
   background-color: $primary;
+  z-index: 5;
+
+  .close {
+    display: none !important;
+    @include phone() {
+      display: flex !important;
+    }
+  }
+  @include phone() {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    transition: 0.2s;
+    &.open {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
   .logo {
-    height: 70px;
+    background-color: white;
+    display: grid;
+    place-items: center;
     img {
-      width: 100%;
+      max-width: 100%;
+      max-height: 70px;
     }
   }
   .collectionsList,
@@ -251,12 +307,14 @@ input {
     align-items: stretch;
     display: flex;
     flex-direction: column;
-    .add {
+    .add,
+    .close {
       padding: 20px;
       display: flex;
       align-self: center;
 
       .clickable {
+        cursor: pointer;
         padding: 10px;
         background-color: white;
         height: 40px;
@@ -349,6 +407,10 @@ header {
     letter-spacing: 3px;
     font-weight: 500;
     line-height: 5rem;
+    @include tablet() {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
   }
   p.url {
     color: #555;
@@ -414,6 +476,7 @@ table#collection {
 }
 
 .Main {
+  margin-top: 30px;
   height: 100%;
   overflow-y: scroll;
 }
@@ -525,6 +588,9 @@ section {
       border-bottom: 3px solid $primary;
       font-size: 4rem;
       color: $primary;
+      @include tablet() {
+        font-size: 2rem;
+      }
     }
     .url {
       margin-top: 20px;
@@ -558,14 +624,14 @@ section {
       font-size: 0.7rem;
       margin-top: 3px;
     }
-    .readOnly {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      p {
-        margin-right: 20px;
-      }
-    }
+  }
+}
+.readOnly {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  p {
+    margin-right: 20px;
   }
 }
 

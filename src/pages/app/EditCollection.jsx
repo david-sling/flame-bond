@@ -133,11 +133,30 @@ export default function EditCollection({ setPage, setCollections }) {
                   <button type="submit">
                     <Add />
                   </button>
+                  <br />
                 </form>
               </th>
             </tr>
           </tbody>
         </table>
+        <div
+          className="readOnly"
+          onClick={() =>
+            setSchema({
+              ...schema,
+              _readOnly: !schema?._readOnly,
+            })
+          }
+        >
+          <p>Read Only:</p>
+          <input
+            type="checkbox"
+            value={schema?._readOnly}
+            checked={schema?._readOnly}
+            name="readOnly"
+            id="readOnly"
+          />
+        </div>
       </section>
     </div>
   );
