@@ -34,6 +34,7 @@ export default function Modal({ open, setOpen, children }) {
           left: "50%",
           transform: "translate(-50%,-50%)",
           background: "#fff",
+          overflow: "scroll",
         }}
       >
         {children}

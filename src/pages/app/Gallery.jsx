@@ -4,7 +4,11 @@ import Header from "../../components/Header";
 import { addImages, getImages } from "../../services/actions";
 import { storage } from "../../services/firebase";
 
-export default function Gallery({ setPage }) {
+export default function Gallery({
+  setPage,
+  hidehead,
+  handleSelect = (f) => console.log(f),
+}) {
   const [gallery, setGallery] = useState([]);
   const [uploading, setUploading] = useState(false);
 
@@ -25,7 +29,7 @@ export default function Gallery({ setPage }) {
 
   return (
     <div className="Gallery">
-      <Header title="Gallery" url={["_gallery"]}></Header>
+      {!hidehead && <Header title="Gallery" url={["_gallery"]}></Header>}
       <div className="center">
         <div className="grid">
           <div className="grid-item newPhoto">
@@ -38,7 +42,9 @@ export default function Gallery({ setPage }) {
           </div>
           {gallery.map((item) => (
             <div key={item} className="grid-item">
-              <img src={item} />
+              <div className="img" onClick={() => handleSelect(item)}>
+                <img src={item} />
+              </div>
               <div className="deleteIcon" onClick={() => handleRemove(item)}>
                 <DeleteForever />
               </div>

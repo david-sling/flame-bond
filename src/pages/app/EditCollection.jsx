@@ -95,6 +95,7 @@ export default function EditCollection({ setPage, setCollections }) {
                     >
                       <option value="text">text</option>
                       <option value="markdown">markdown</option>
+                      <option value="image">image</option>
                     </select>
                   </td>
                   <td>
