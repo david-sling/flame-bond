@@ -169,14 +169,14 @@ export default function EditCollection({ user, setPage, setCollections }) {
             <p>GET:</p>
             <input
               type="checkbox"
-              value={schema?.public.get}
-              checked={schema?.public.get}
+              value={schema?.public?.get}
+              checked={schema?.public?.get}
               name="readOnly"
               id="readOnly"
               onClick={(e) =>
                 setSchema({
                   ...schema,
-                  public: { ...schema.public, get: !schema?.public.get },
+                  public: { ...schema.public, get: !schema?.public?.get },
                 })
               }
             />
@@ -185,14 +185,14 @@ export default function EditCollection({ user, setPage, setCollections }) {
             <p>GET ONE:</p>
             <input
               type="checkbox"
-              value={schema?.public.getOne}
-              checked={schema?.public.getOne}
+              value={schema?.public?.getOne}
+              checked={schema?.public?.getOne}
               name="readOnly"
               id="readOnly"
               onClick={(e) =>
                 setSchema({
                   ...schema,
-                  public: { ...schema.public, getOne: !schema?.public.getOne },
+                  public: { ...schema.public, getOne: !schema?.public?.getOne },
                 })
               }
             />
@@ -201,14 +201,14 @@ export default function EditCollection({ user, setPage, setCollections }) {
             <p>POST:</p>
             <input
               type="checkbox"
-              value={schema?.public.post}
-              checked={schema?.public.post}
+              value={schema?.public?.post}
+              checked={schema?.public?.post}
               name="readOnly"
               id="readOnly"
               onClick={(e) =>
                 setSchema({
                   ...schema,
-                  public: { ...schema.public, post: !schema?.public.post },
+                  public: { ...schema.public, post: !schema?.public?.post },
                 })
               }
             />
@@ -217,14 +217,14 @@ export default function EditCollection({ user, setPage, setCollections }) {
             <p>PATCH:</p>
             <input
               type="checkbox"
-              value={schema?.public.patch}
-              checked={schema?.public.patch}
+              value={schema?.public?.patch}
+              checked={schema?.public?.patch}
               name="readOnly"
               id="readOnly"
               onClick={(e) =>
                 setSchema({
                   ...schema,
-                  public: { ...schema.public, patch: !schema?.public.patch },
+                  public: { ...schema.public, patch: !schema?.public?.patch },
                 })
               }
             />
@@ -233,14 +233,14 @@ export default function EditCollection({ user, setPage, setCollections }) {
             <p>DELETE:</p>
             <input
               type="checkbox"
-              value={schema?.public.delete}
-              checked={schema?.public.delete}
+              value={schema?.public?.delete}
+              checked={schema?.public?.delete}
               name="readOnly"
               id="readOnly"
               onClick={(e) =>
                 setSchema({
                   ...schema,
-                  public: { ...schema.public, delete: !schema?.public.delete },
+                  public: { ...schema.public, delete: !schema?.public?.delete },
                 })
               }
             />
