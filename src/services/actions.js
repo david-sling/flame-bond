@@ -12,11 +12,12 @@ const updateSchema = async (collectionId, schema) => {
 };
 
 //COLLECTIONS
-const getCollections = async (setCollections, setUnauthorized) => {
+const getCollections = async (setCollections, setUnauthorized, user) => {
   try {
-    const data = await firestore.get("_collections", false);
+    const data = await firestore.get("_collections", false, user);
     setCollections(data);
   } catch (error) {
+    // getCollections(setCollections, setUnauthorized);
     console.error(error);
     setUnauthorized(true);
   }
@@ -59,8 +60,8 @@ const removeEntry = async (collection, entryId, setDeleted) => {
 };
 
 //IMAGES
-const getImages = async (setGallery) => {
-  const urls = await storage.getUrl("/image", setGallery);
+const getImages = async (setGallery, user) => {
+  const urls = await storage.getUrl("/image", setGallery, user);
   return urls;
 };
 

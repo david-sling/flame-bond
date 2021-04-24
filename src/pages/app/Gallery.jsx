@@ -5,6 +5,7 @@ import { addImages, getImages } from "../../services/actions";
 import { storage } from "../../services/firebase";
 
 export default function Gallery({
+  user,
   setPage,
   hidehead,
   handleSelect = (f) => console.log(f),
@@ -14,7 +15,7 @@ export default function Gallery({
 
   useEffect(() => {
     setPage("_gallery");
-    getImages(setGallery);
+    getImages(setGallery, user);
   }, [setPage]);
 
   const handleUpload = async (e) => {

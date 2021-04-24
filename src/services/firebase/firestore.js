@@ -1,8 +1,21 @@
 import firebase from "./init";
-const db = firebase.firestore();
 
-const get = async (collection, orderBy = "_dateCreated") => {
+var email = null;
+var db = null;
+
+firebase.auth().onAuthStateChanged(function (u) {
+  if (u) {
+    email = u.email;
+    console.log(email);
+    db = firebase.firestore().collection("_users").doc(email);
+  }
+});
+
+const get = async (collection, orderBy = "_dateCreated", user) => {
+  // while (!email) {}
+  if (user) db = firebase.firestore().collection("_users").doc(user.email);
   var ref = db.collection(collection);
+  console.log(db);
   if (orderBy) ref = ref.orderBy(orderBy);
   const snapshot = await ref.get();
   const data = snapshot.docs.map((doc, idx) => {

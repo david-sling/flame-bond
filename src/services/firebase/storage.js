@@ -1,8 +1,19 @@
 import firebase from "./init";
-const st = firebase.storage();
 
-const getUrl = async (path, cb = console.log) => {
-  var listRef = st.ref("/").child(path);
+var email = null;
+var st = firebase.storage().ref("/" + email);
+
+firebase.auth().onAuthStateChanged(function (u) {
+  if (u) {
+    email = u.email;
+    st = firebase.storage().ref("/" + email);
+    console.log(email);
+  }
+});
+
+const getUrl = async (path, cb = console.log, user) => {
+  if (user) st = firebase.storage().ref("/" + user.email);
+  var listRef = st.child(path);
   const res = await listRef.listAll();
   var gallery = [];
   res.items.forEach(
@@ -21,7 +32,7 @@ const getUrl = async (path, cb = console.log) => {
 
 const upload = async (file) => {
   const [type, ext] = file.type.toString().split("/");
-  var ref = st.ref("/").child(`/${type}/${Date.now()}.${ext}`);
+  var ref = st.child(`/${type}/${Date.now()}.${ext}`);
   const snapshot = await ref.put(file);
   console.log(snapshot);
 };

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Add, Close, Menu } from "@material-ui/icons";
 
 export default function SideBar({
+  user,
   page,
   collections,
   setCollections,
@@ -16,7 +17,7 @@ export default function SideBar({
   const [unauthorized, setUnauthorized] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    getCollections(setCollections, setUnauthorized);
+    getCollections(setCollections, setUnauthorized, user);
   }, []);
   useEffect(() => {
     console.log({ collections });
