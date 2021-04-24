@@ -640,6 +640,31 @@ section {
   cursor: pointer;
   p {
     margin-right: 20px;
+    line-height: 40px;
+  }
+}
+
+.rules {
+  max-width: 200px;
+  .rule {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    p {
+      margin-right: 20px;
+      line-height: 40px;
+    }
+  }
+}
+
+.endpoint {
+  a {
+    color: $blue;
+    font-weight: 800;
+    letter-spacing: 1px;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
