@@ -3,161 +3,53 @@
   <img src="./src/assets/logo.svg" alt="angular-logo" width="120px" height="120px"/>
 <br>
 <br>
-  A Content management system that connects React with Firebase
+  A Content management system that will auto generate API endpoints for your data.
   <br><br>
   <img src="./src/assets/reactplusfirebase.svg" alt="reactplusfirebase" width="70px"/>
 </p>
 
-<p align="center">
-    <img src="./src/assets/inprogress.svg" alt="inprogress" width="150px"/>
-</p>
+---
+
+### What does flame-bond do?
+
+- Flame-bond can be used if you are building a frontend focussed website with minimal backend requirements.
+- We take care of the generic CRUD code that you will have to copy-paste for each new project.
+- You can select which routes to make public. For example, you can say: "Make only GET & GET ONE routes of /posts public." All the other routes will then remain accesible only through the panel.
+
+### Application Examples
+
+- If you are building a personal blog, create a posts route and make the GET & GET ONE routes public. You can use the panel to add posts, and the API will reflect your changes.
+- If you need a contact form on your website, make the POST route public and make the collection "read-only". This way, you'll be able to read the messages sent from your contact form.
+
+### How to use?
+
+- Go to <https://flamebond.davidsling.in>.
+- Login with your google account.
+- Click on `+` on the left panel to create a new collection.
+- Enter a name for your collection and click next.
+- Add some fields and select a data type.
+- Click on the name of your collection on the left panel and click NEW.
+- Enter your data and save.
+- Click on the name of your collection on the left panel and click EDIT.
+- Allow public access for GET and click on the API endpoint provided below.
+- Congrats, you just created a CRUD REST API for your frontend project.
+
+##### See README of [flame-bond-node](https://github.com/david-sling/flame-bond-node#readme) for API documentation.
+
+### Future updates
+
+- **Private API routes** that will require an api-token in the request-header.
+- Pre-defined users collection to be used for **authenticated access**.
+- Many to many **relational data-type**.
 
 ---
 
-### How to install:
+### Tech stack
 
-- Clone repository: `git clone https://github.com/david-sling/flame-bond.git`
-- configure firebase credentials in `./config/firebase.js`
-- add the following lines in your firestore rules:
-
-```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if
-          request.auth.token.email == "youremail@example.com";
-    }
-  }
-}
-```
-
-- `npm install`
-
-- `npm start`
+- React js
+- Node js
+- Firebase
 
 ---
 
-### Customization:
-
-#### Logo
-
-replace src/assets/logo.svg with your logo
-
-#### Color
-
-Change SCSS variables for
-
-- $primary
-- $blue
-- $red
-- $green
-
-inside src/App.scss
-
-#### Advanced Customization
-
-Feel free to play around with the React components inside src/components & src/pages
-
----
-
-### Actions:
-
-```js
-import{
-  //SCHEMA
-  getSchema,
-  updateSchema,
-  //COLLECTIONS
-  getCollections,
-  getCollection,
-  createCollection,
-  removeCollection,
-  //ENTRY
-  getEntry,
-  createEntry,
-  updateEntry,
-  removeEntry,
-} from './services/actions
-```
-
-###### SCHEMA
-
-#### `getSchema()`
-
-```js
-const collectionId = "posts";
-const [schema, setSchema] = useState(null);
-getSchema(collectionId, setSchema);
-// now `const schema` contains the schema of `post`
-```
-
-#### `updateSchema()`
-
-```js
-setSchema({ ...schema /*SOME CHANGES*/ });
-updateSchema(collectionId, schema);
-```
-
-###### COLLECTIONS
-
-#### `getCollections()`
-
-```js
-const [collections, setCollections] = useState([]);
-getCollections(setCollections);
-// now list of all collections is available in const `collections`
-```
-
-#### `createCollection()`
-
-```jsx
-const url = "posts";
-const name = "Post";
-const [redirect, setRedirect] = useState(null);
-
-createCollection(url, name, setRedirect);
-
-if (redirect) return <Redirect to={redirect} />;
-// The user will be redirected to `/posts/edit` once the collection is created
-```
-
-#### `removeCollection()`
-
-```js
-removeCollection(collectionId);
-```
-
-###### ENTRY
-
-### `getEntry()`
-
-```js
-const [entry, setEntry] = useState(null);
-getEntry(collectionId, entryId, setEntry);
-// now the entry data will be stored in const `entry`
-```
-
-### `createEntry()`
-
-```js
-const [id, setId] = useState(null);
-getEntry(collectionId, entry, setId);
-// now the id of the newy created entry will be stored in const `id`
-```
-
-### `updateEntry()`
-
-```js
-updateEntry(collection, id, updatedEntry);
-// now the id of the newy created entry will be stored in const `id`
-```
-
-### `removeEntry()`
-
-```jsx
-const [deleted, setDeleted] = useState(false);
-updateEntry(collection, id, setDeleted);
-// const `deleted` will be set to true once the entry is deleted and can be used to redirect
-if (deleted) return <Redirect to="/" />;
-```
+This project is open sourced. Feel free to clone the repository to modify and host your own CMS.
